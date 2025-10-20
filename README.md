@@ -12,6 +12,7 @@ Este projeto foi desenvolvido com:
 - **[Next.js](https://nextjs.org/)** — Framework React para aplicações web modernas
 - **[Tailwind CSS](https://tailwindcss.com/)** — Estilização rápida e responsiva
 - **[Supabase](https://supabase.com/)** — Banco de dados e autenticação
+- **[Python](https://python.org/)** — Python
 
 ---
 
@@ -20,39 +21,57 @@ Este projeto foi desenvolvido com:
 ```text
 .
 dead-tree-scribes/
-├─ app/                          # Next.js app router
-│  ├─ api/                       # Endpoints da API (ex: clientes)
-│  │  └─ clientes/
-│  │      ├─ route.ts            # CRUD via Supabase
-│  ├─ clientes/                  # Página de listagem e cadastro de clientes
-│  │  ├─ page.tsx                # Lista de clientes
-│  │  └─ [id]/page.tsx           # Visualizar/editar cliente
-│  ├─ dashboard/                 # Dashboard inicial
-│  │  └─ page.tsx
-│  └─ layout.tsx                 # Layout principal (navbar, sidebar)
-├─ components/                   # Componentes reutilizáveis
-│  ├─ Button.tsx
-│  ├─ Form/                      # Forms com Hook Form
-│  │  └─ ClienteForm.tsx
-│  ├─ Table/                     # Tabelas (TanStack Table)
-│  │  └─ ClienteTable.tsx
-│  └─ UI/                        # Componentes Shadcn customizados
-├─ lib/                          # Conexões externas e helpers
-│  ├─ supabaseClient.ts          # Configuração Supabase
-│  └─ apiHelpers.ts              # Funções genéricas para API
-├─ hooks/                        # Hooks customizados
-│  ├─ useClientes.ts             # TanStack Query + Supabase
-│  └─ useAuth.ts                 # Auth Supabase
-├─ context/                      # Contextos React
-│  └─ AuthContext.tsx
-├─ types/                        # Tipagens TypeScript
-│  └─ cliente.ts
-├─ styles/                       # Tailwind custom (se precisar)
-│  └─ globals.css
-├─ public/                        # Imagens, favicon, etc
-├─ package.json
-├─ tsconfig.json
-└─ tailwind.config.js
+│
+├── app/                      # Next.js App Router
+│   ├── (auth)/               # Rotas de autenticação
+│   │   ├── login/
+│   │   └── register/
+│   │       └── page.tsx
+│   │
+│   ├── (dashboard)/          # Área logada (protegida)
+│   │   ├── layout.tsx        # Layout base do dashboard
+│   │   ├── page.tsx          # Página inicial do dashboard
+│   │   └── clients/          # CRUD de clientes
+│   │       ├── page.tsx
+│   │       ├── new/
+│   │       │   └── page.tsx  # Formulário novo cliente
+│   │       └── [id]/
+│   │           └── page.tsx  # Editar cliente
+│   │
+│   ├── layout.tsx            # Layout global (navbar, footer, etc.)
+│   ├── page.tsx              # Landing page pública
+│   └── globals.css
+│
+├── components/
+│   ├── ui/                   # Componentes importados do shadcn/ui
+│   ├── forms/                # Componentes de formulário reutilizáveis (Input, Select, etc.)
+│   ├── layout/               # Navbar, Sidebar, Footer, etc.
+│   └── client/               # Componentes específicos do CRUD de cliente
+│
+├── hooks/
+│   ├── useClient.ts          # Hooks customizados, ex: integração com TanStack Query
+│   └── useAuth.ts
+│
+├── lib/
+│   ├── supabaseClient.ts     # Configuração e inicialização do Supabase
+│   ├── utils.ts              # Funções auxiliares
+│   └── validations.ts        # Schemas de validação com zod
+│
+├── services/
+│   ├── clients.ts            # CRUD de clientes (usando Supabase)
+│   └── auth.ts               # Login, registro e sessão
+│
+├── types/
+│   ├── client.ts             # Tipos e interfaces
+│   └── user.ts
+│
+├── .env.local                # Chaves do Supabase e configs locais
+├── tailwind.config.ts
+├── tsconfig.json
+├── next.config.mjs
+├── package.json
+└── README.md
+
 
 ```
 
