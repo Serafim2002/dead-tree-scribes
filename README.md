@@ -19,16 +19,41 @@ Este projeto foi desenvolvido com:
 
 ```text
 .
-├── app/                # Rotas e páginas (Next.js App Router)
-│   ├── layout.tsx      # Layout principal
-│   └── page.tsx        # Página inicial
-├── components/         # Componentes reutilizáveis (Navbar, Footer, etc.)
-├── lib/                # Conexão e funções auxiliares com Supabase
-├── public/             # Arquivos estáticos (imagens, ícones, etc.)
-├── styles/             # Estilos globais
-├── .env.example        # Exemplo de variáveis de ambiente
-├── package.json        # Scripts e dependências
-└── README.md           # Documentação do projeto
+dead-tree-scribes/
+├─ app/                          # Next.js app router
+│  ├─ api/                       # Endpoints da API (ex: clientes)
+│  │  └─ clientes/
+│  │      ├─ route.ts            # CRUD via Supabase
+│  ├─ clientes/                  # Página de listagem e cadastro de clientes
+│  │  ├─ page.tsx                # Lista de clientes
+│  │  └─ [id]/page.tsx           # Visualizar/editar cliente
+│  ├─ dashboard/                 # Dashboard inicial
+│  │  └─ page.tsx
+│  └─ layout.tsx                 # Layout principal (navbar, sidebar)
+├─ components/                   # Componentes reutilizáveis
+│  ├─ Button.tsx
+│  ├─ Form/                      # Forms com Hook Form
+│  │  └─ ClienteForm.tsx
+│  ├─ Table/                     # Tabelas (TanStack Table)
+│  │  └─ ClienteTable.tsx
+│  └─ UI/                        # Componentes Shadcn customizados
+├─ lib/                          # Conexões externas e helpers
+│  ├─ supabaseClient.ts          # Configuração Supabase
+│  └─ apiHelpers.ts              # Funções genéricas para API
+├─ hooks/                        # Hooks customizados
+│  ├─ useClientes.ts             # TanStack Query + Supabase
+│  └─ useAuth.ts                 # Auth Supabase
+├─ context/                      # Contextos React
+│  └─ AuthContext.tsx
+├─ types/                        # Tipagens TypeScript
+│  └─ cliente.ts
+├─ styles/                       # Tailwind custom (se precisar)
+│  └─ globals.css
+├─ public/                        # Imagens, favicon, etc
+├─ package.json
+├─ tsconfig.json
+└─ tailwind.config.js
+
 ```
 
 ---
