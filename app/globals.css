@@ -130,6 +130,10 @@
   font-family: 'Cinzel', serif;
 }
 
+.font-grenze {
+  font-family: var(--font-grenze), 'Grenze', serif;
+}
+
 /* Tema claro → pergaminho */
 :root {
   --background: #f9f5e7;
