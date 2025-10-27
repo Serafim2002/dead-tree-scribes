@@ -43,81 +43,149 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Light Mode - Parchment Theme */
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  
+  /* Figma Light Mode Colors */
+  --background: #EBF2BD;
+  --foreground: #340A58;
+  --primary: #7925C3;
+  --primary-dark: #340A58;
+  --accent: #7925C3;
+  
+  /* Card colors */
+  --card: #FFFDF5;
+  --card-light: rgba(255, 253, 245, 0.8);
+  --card-foreground: #340A58;
+  
+  /* CTA Button */
+  --cta: #340A58;
+  --cta-foreground: #EBF2BD;
+  
+  /* Text effects */
+  --text-glow: 0 0 10px rgba(90, 11, 111, 0.01), 
+               0 0 9px rgba(90, 11, 111, 0.12), 
+               0 0 8px rgba(90, 11, 111, 0.40), 
+               0 0 6px rgba(90, 11, 111, 0.68), 
+               0 0 3px rgba(90, 11, 111, 0.79);
+  
+  --title-glow: 4px 0 10px rgba(86, 24, 98, 0.01), 
+                3px 0 9px rgba(86, 24, 98, 0.04), 
+                2px 0 8px rgba(86, 24, 98, 0.15), 
+                1px 0 6px rgba(86, 24, 98, 0.26), 
+                0 0 3px rgba(86, 24, 98, 0.29);
+  
+  --button-shadow: 0 4px 12px rgba(52, 10, 88, 0.25);
+  --card-shadow: 0 2px 8px rgba(52, 10, 88, 0.15);
+  
+  /* Default shadcn colors */
+  --popover: #FFFDF5;
+  --popover-foreground: #340A58;
+  --primary-foreground: #EBF2BD;
+  --secondary: #F0E6FF;
+  --secondary-foreground: #340A58;
+  --muted: #E8E0F5;
+  --muted-foreground: #7925C3;
+  --accent-foreground: #340A58;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: rgba(121, 37, 195, 0.2);
+  --input: rgba(121, 37, 195, 0.25);
+  --ring: #7925C3;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: #FFFDF5;
+  --sidebar-foreground: #340A58;
+  --sidebar-primary: #7925C3;
+  --sidebar-primary-foreground: #EBF2BD;
+  --sidebar-accent: #F0E6FF;
+  --sidebar-accent-foreground: #340A58;
+  --sidebar-border: rgba(121, 37, 195, 0.2);
+  --sidebar-ring: #7925C3;
 }
 
+/* Dark Mode - Grimoire Theme */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  /* Figma Dark Mode Colors */
+  --background: #2D1705;
+  --foreground: #FFC592;
+  --primary: #FFC592;
+  --primary-dark: #CF7F2F;
+  --accent: #EBF2BD;
+  
+  /* Card colors */
+  --card: #3A2308;
+  --card-dark: rgba(58, 35, 8, 0.6);
+  --card-foreground: #FFC592;
+  
+  /* CTA Button */
+  --cta-dark: #D5A82D;
+  --cta-foreground-dark: #5B300B;
+  
+  /* Text effects */
+  --text-glow: 2px 0 10px rgba(230, 218, 92, 0.02), 
+               2px 0 9px rgba(230, 218, 92, 0.13), 
+               1px 0 8px rgba(230, 218, 92, 0.43), 
+               0 0 6px rgba(230, 218, 92, 0.72), 
+               0 0 3px rgba(230, 218, 92, 0.83);
+  
+  --title-glow: 0 0 10px rgba(221, 199, 60, 0.02), 
+                0 0 9px rgba(221, 199, 60, 0.15), 
+                0 0 8px rgba(221, 199, 60, 0.50), 
+                0 0 6px rgba(221, 199, 60, 0.85), 
+                0 0 3px rgba(221, 199, 60, 0.98);
+  
+  --button-shadow: 0 0 10px rgba(58, 35, 3, 0.02) inset, 
+                   0 0 9px rgba(58, 35, 3, 0.15) inset, 
+                   0 0 8px rgba(58, 35, 3, 0.50) inset, 
+                   0 0 6px rgba(58, 35, 3, 0.85) inset, 
+                   0 0 3px rgba(58, 35, 3, 0.98) inset;
+  
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  
+  /* Default shadcn colors */
+  --popover: #3A2308;
+  --popover-foreground: #FFC592;
+  --primary-foreground: #2D1705;
+  --secondary: #4D3010;
+  --secondary-foreground: #FFC592;
+  --muted: #4D3010;
+  --muted-foreground: #D5A82D;
+  --accent-foreground: #2D1705;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: rgba(255, 197, 146, 0.2);
+  --input: rgba(255, 197, 146, 0.25);
+  --ring: #CF7F2F;
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: #3A2308;
+  --sidebar-foreground: #FFC592;
+  --sidebar-primary: #D5A82D;
+  --sidebar-primary-foreground: #2D1705;
+  --sidebar-accent: #4D3010;
+  --sidebar-accent-foreground: #FFC592;
+  --sidebar-border: rgba(255, 197, 146, 0.2);
+  --sidebar-ring: #CF7F2F;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-grenze), 'Grenze', serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
   }
 }
 
@@ -125,7 +193,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fonte temática */
+/* Custom font classes */
 .font-cinzel {
   font-family: 'Cinzel', serif;
 }
@@ -134,16 +202,58 @@
   font-family: var(--font-grenze), 'Grenze', serif;
 }
 
-/* Tema claro → pergaminho */
-:root {
-  --background: #f9f5e7;
-  --foreground: #2d2d2a;
-  --card: #fffdf5;
+/* Custom animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-/* Tema escuro → grimório */
-.dark {
-  --background: #1a1a1a;
-  --foreground: #e5e5e5;
-  --card: #2b2b2b;
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+/* Remove any unwanted borders */
+* {
+  outline: none;
+}
+
+button:focus,
+a:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Ensure smooth transitions */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
