@@ -1,25 +1,35 @@
 from app.database import supabase
-from app.models import Client
+from app.models import User
 
-TABLE_NAME = "clients"
+TABLE_NAME = "Users"
 
-def get_all_clients():
-    data = supabase.table(TABLE_NAME).select("*").execute()
-    return data.data
-
-def create_client(client: Client):
-    response = supabase.table(TABLE_NAME).insert(client.dict(exclude_unset=True)).execute()
+def get_all_users():
+    response = supabase.table(TABLE_NAME).select("*").execute()
     return response.data
 
-def update_client(client_id: int, client: Client):
+def create_users(user_data: dict):
+    response = supabase.table(TABLE_NAME).insert(user_data(exclude_unset=True)).execute()
+    return response.data
+
+def update_user(user_id: int, user: User):
     response = (
         supabase.table(TABLE_NAME)
-        .update(client.dict(exclude_unset=True))
-        .eq("id", client_id)
+        .update(user.dict(exclude_unset=True))
+        .eq("id", user_id)
         .execute()
     )
     return response.data
 
-def delete_client(client_id: int):
-    response = supabase.table(TABLE_NAME).delete().eq("id", client_id).execute()
+def delete_user(user_id):
+    response = supabase.table(TABLE_NAME).delete().eq("id", user_id).execute()
     return response.data
+
+def login_user(email: str, password: str):
+    response=(
+        supabase.table(TABLE_NAME)
+        .select("*")
+        .eq("email", email)
+        .single()
+        .execute()
+    )
+    return response.data 

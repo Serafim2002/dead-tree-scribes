@@ -1,7 +1,23 @@
 from pydantic import BaseModel, EmailStr, Field
 
-class Client(BaseModel):
+class User(BaseModel):
     id: int | None = None
     name: str = Field(..., min_length=3)
     email: EmailStr
-    phone: str | None = None
+    password: str | None = None
+
+class ADM(BaseModel):
+    id: int | None=None
+    user_id: int
+
+class Normal(BaseModel):
+    id: int | None=None
+    user_id: int
+
+class LoginInput(BaseModel):
+    username: str
+    password: str
+
+class LoginOutput(BaseModel):
+    message: str
+    user: dict

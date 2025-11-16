@@ -37,8 +37,20 @@ export default function RegisterPage() {
       })
 
       if (authError) throw authError
-
-      router.push("/")
+      
+      const user = authData.user
+      if (user){
+        const {error: dbError } = await supabase
+        .from("Users")
+        .insert({
+          auth_id: authData.user.id,
+          name:data.username,
+          email:data.email,
+          password:data.password,
+        })
+        if (dbError) throw dbError
+      }
+      router.push("/login")
     } catch (err: any) {
       setError(err.message || "Erro ao despertar seu herói")
     } finally {

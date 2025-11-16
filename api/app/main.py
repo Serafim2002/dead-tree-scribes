@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routes import clients
+from app.routes import users
 
 app = FastAPI(title="Dead Tree Scribes API")
 

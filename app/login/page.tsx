@@ -24,36 +24,49 @@ export default function LoginPage() {
     resolver: zodResolver(loginSchema),
   })
 
-  const onSubmit = async (data: LoginInput) => {
-    setIsLoading(true)
-    setError(null)
+const onSubmit = async (data: LoginInput) => {
+  setIsLoading(true);
+  setError(null);
 
-    try {
-      const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-        email: data.username,
-        password: data.password,
-      })
+  try {
+    const { data: user, error } = await supabase
+      .from("Users")
+      .select("*")
+      .eq("email", data.email)
+      .eq("password", data.password)
+      .single();
 
-      if (authError) throw authError
+    if (error || !user) throw new Error("Usuário ou senha incorretos 🧙‍♂️");
 
-      router.push("/")
-    } catch (err: any) {
-      setError(err.message || "Erro ao entrar no reino")
-    } finally {
-      setIsLoading(false)
-    }
+    // remove senha antes de salvar localmente (opcional)
+    const { password, ...userWithoutPassword } = user;
+
+    localStorage.setItem("user", JSON.stringify(userWithoutPassword));
+    router.push("/");
+  } catch (err: any) {
+    setError(err.message || "Erro ao entrar no reino ⚔️");
+  } finally {
+    setIsLoading(false);
   }
+};
 
-  const handleSocialLogin = async (provider: "google" | "facebook" | "twitter") => {
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider,
-      })
-      if (error) throw error
-    } catch (err: any) {
-      setError(err.message)
-    }
+const handleSocialLogin = async (provider: "google" | "facebook" | "twitter") => {
+  try {
+    setError(null);
+
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`
+      }
+    });
+
+    if (error) throw error;
+
+  } catch (err: any) {
+    setError(err.message);
   }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
@@ -150,15 +163,15 @@ export default function LoginPage() {
                     </g>
                   </svg>
                   <input
-                    {...register("username")}
-                    type="text"
-                    placeholder="Nome do aventureiro"
+                    {...register("email")}
+                    type="email"
+                    placeholder="E-mail"
                     className="flex-1 bg-transparent border-0 outline-none font-grenze text-lg placeholder:text-[#EBF2BD]/50"
                     style={{ color: '#EBF2BD' }}
                   />
                 </div>
-                {errors.username && (
-                  <p className="mt-1 text-sm text-red-300 font-grenze">{errors.username.message}</p>
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-300 font-grenze">{errors.email.message}</p>
                 )}
               </div>
 
