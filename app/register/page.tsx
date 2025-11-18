@@ -37,8 +37,20 @@ export default function RegisterPage() {
       })
 
       if (authError) throw authError
-
-      router.push("/")
+      
+      const user = authData.user
+      if (user){
+        const {error: dbError } = await supabase
+        .from("Users")
+        .insert({
+          auth_id: authData.user.id,
+          name:data.username,
+          email:data.email,
+          password:data.password,
+        })
+        if (dbError) throw dbError
+      }
+      router.push("/login")
     } catch (err: any) {
       setError(err.message || "Erro ao despertar seu herói")
     } finally {
@@ -46,7 +58,8 @@ export default function RegisterPage() {
     }
   }
 
-  const handleSocialLogin = async (provider: "google" | "facebook" | "twitter") => {
+
+  const handleSocialLogin = async (provider: "google" | "facebook" | "discord") => {
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider,
@@ -61,9 +74,9 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center blur-sm"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/f1751cfadbade89652d0a68ef1164ccb32a373ad?width=2944)',
+          backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/56c8f99fb4659d53148b4acbafcf1f14fe924462?width=2944)',
           filter: 'blur(5px)',
         }}
       />
@@ -72,7 +85,7 @@ export default function RegisterPage() {
       <div className="relative w-full max-w-6xl flex flex-col lg:flex-row rounded-3xl overflow-hidden shadow-2xl">
         {/* Left Panel - Form */}
         <div
-          className="flex-1 p-8 lg:p-12 backdrop-blur-sm"
+          className="flex-1 p-6 sm:p-8 lg:p-12 backdrop-blur-sm"
           style={{
             background:
               'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 17.71%, rgba(255, 237, 37, 0.11) 83.65%), rgba(115, 53, 8, 0.85)',
@@ -80,10 +93,10 @@ export default function RegisterPage() {
               '0 752px 210px 0 rgba(0, 0, 0, 0.01), 0 481px 192px 0 rgba(0, 0, 0, 0.04), 0 271px 162px 0 rgba(0, 0, 0, 0.15), 0 120px 120px 0 rgba(0, 0, 0, 0.26), 0 30px 66px 0 rgba(0, 0, 0, 0.29)',
           }}
         >
-          <div className="max-w-md mx-auto space-y-6">
+          <div className="max-w-md mx-auto space-y-4 sm:space-y-6">
             {/* Title */}
             <h1
-              className="text-center font-grenze text-4xl lg:text-5xl font-normal"
+              className="text-center font-grenze text-3xl sm:text-4xl lg:text-5xl font-normal"
               style={{
                 color: '#EBF2BD',
                 textShadow:
@@ -95,7 +108,7 @@ export default function RegisterPage() {
 
             {/* Subtitle */}
             <p
-              className="text-center font-grenze text-2xl lg:text-3xl font-normal"
+              className="text-center font-grenze text-xl sm:text-2xl lg:text-3xl font-normal"
               style={{
                 color: '#FFC592',
                 textShadow:
@@ -107,7 +120,7 @@ export default function RegisterPage() {
 
             {/* Description */}
             <p
-              className="text-center font-grenze text-lg lg:text-xl font-normal"
+              className="text-center font-grenze text-base sm:text-lg lg:text-xl font-normal"
               style={{
                 color: '#FFC592',
                 textShadow:
@@ -125,7 +138,7 @@ export default function RegisterPage() {
             )}
 
             {/* Form */}
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4">
               {/* Username Input */}
               <div className="relative">
                 <div
@@ -140,8 +153,7 @@ export default function RegisterPage() {
                     height="29"
                     viewBox="0 0 29 29"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 w-5 h-5 sm:w-7 sm:h-7"
                   >
                     <g clipPath="url(#clip0_10_15)">
                       <path
@@ -155,7 +167,7 @@ export default function RegisterPage() {
                     {...register("username")}
                     type="text"
                     placeholder="Nome do aventureiro"
-                    className="flex-1 bg-transparent border-0 outline-none font-grenze text-lg placeholder:text-[#EBF2BD]/50"
+                    className="flex-1 bg-transparent border-0 outline-none font-grenze text-base sm:text-lg placeholder:text-[#EBF2BD]/50"
                     style={{ color: '#EBF2BD' }}
                   />
                 </div>
@@ -178,8 +190,7 @@ export default function RegisterPage() {
                     height="34"
                     viewBox="0 0 34 34"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 w-5 h-5 sm:w-7 sm:h-7"
                   >
                     <path
                       d="M27.625 2.125H11.6875C10.2791 2.12669 8.92878 2.68694 7.93286 3.68286C6.93694 4.67878 6.37669 6.02906 6.375 7.4375V23.375H4.25C3.077 23.375 2.125 24.3291 2.125 25.5V27.625C2.125 29.9689 4.03112 31.875 6.375 31.875H21.25C23.5939 31.875 25.5 29.9689 25.5 27.625V10.625H29.75C30.923 10.625 31.875 9.67088 31.875 8.5V6.375C31.875 4.03112 29.9689 2.125 27.625 2.125ZM6.375 29.75C5.202 29.75 4.25 28.7959 4.25 27.625V25.5H17V27.625C17 28.3985 17.2083 29.1252 17.5716 29.75H6.375ZM23.375 27.625C23.3505 28.1721 23.1159 28.6888 22.7201 29.0673C22.3243 29.4458 21.7977 29.6571 21.25 29.6571C20.7023 29.6571 20.1757 29.4458 19.7799 29.0673C19.3841 28.6888 19.1495 28.1721 19.125 27.625V25.5C19.125 24.3291 18.173 23.375 17 23.375H8.5V7.4375C8.5 5.68012 9.93012 4.25 11.6875 4.25H23.9466C23.5728 4.89587 23.3757 5.62877 23.375 6.375V27.625ZM29.75 8.5H25.5V6.375C25.5245 5.82786 25.7591 5.31124 26.1549 4.93271C26.5507 4.55419 27.0773 4.34293 27.625 4.34293C28.1727 4.34293 28.6993 4.55419 29.0951 4.93271C29.4909 5.31124 29.7255 5.82786 29.75 6.375V8.5Z"
@@ -191,7 +202,7 @@ export default function RegisterPage() {
                     {...register("email")}
                     type="email"
                     placeholder="Pergaminho de contato"
-                    className="flex-1 bg-transparent border-0 outline-none font-grenze text-lg placeholder:text-[#EBF2BD]/50"
+                    className="flex-1 bg-transparent border-0 outline-none font-grenze text-base sm:text-lg placeholder:text-[#EBF2BD]/50"
                     style={{ color: '#EBF2BD' }}
                   />
                 </div>
@@ -214,8 +225,7 @@ export default function RegisterPage() {
                     height="38"
                     viewBox="0 0 38 38"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 w-5 h-5 sm:w-7 sm:h-7"
                   >
                     <path
                       fillRule="evenodd"
@@ -229,7 +239,7 @@ export default function RegisterPage() {
                     {...register("password")}
                     type="password"
                     placeholder="Chave secreta"
-                    className="flex-1 bg-transparent border-0 outline-none font-grenze text-lg placeholder:text-[#EBF2BD]/50"
+                    className="flex-1 bg-transparent border-0 outline-none font-grenze text-base sm:text-lg placeholder:text-[#EBF2BD]/50"
                     style={{ color: '#EBF2BD' }}
                   />
                 </div>
@@ -242,7 +252,7 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-4 rounded-lg font-grenze text-2xl font-normal disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+                className="w-full py-3 sm:py-4 rounded-lg font-grenze text-xl sm:text-2xl font-normal disabled:opacity-50 disabled:cursor-not-allowed transition-opacity hover:opacity-90"
                 style={{
                   background: '#CF7F2F',
                   color: '#EBF2BD',
@@ -255,19 +265,20 @@ export default function RegisterPage() {
             {/* Divider */}
             <div className="flex items-center gap-4">
               <div className="flex-1 h-px" style={{ background: '#EBF2BD' }} />
-              <span className="font-grenze text-lg" style={{ color: '#EBF2BD' }}>
+              <span className="font-grenze text-base sm:text-lg" style={{ color: '#EBF2BD' }}>
                 OR
               </span>
               <div className="flex-1 h-px" style={{ background: '#EBF2BD' }} />
             </div>
 
             {/* Social Login */}
-            <div className="flex justify-center gap-6">
+            <div className="flex justify-center gap-4 sm:gap-6">
               <button
                 onClick={() => handleSocialLogin("google")}
-                className="hover:scale-110 transition-transform"
+                className="hover:scale-110 active:scale-95 transition-transform"
+                aria-label="Cadastro com Google"
               >
-                <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none" className="w-10 h-10 sm:w-11 sm:h-11">
                   <path
                     d="M44.0834 19.1667V28.75H42.1667V32.5834H40.2501V36.4167H38.3334V38.3334H36.4167V40.25H32.5834V42.1667H28.7501V44.0834H17.2501V42.1667H13.4167V40.25H9.58341V38.3334H7.66675V36.4167H5.75008V32.5834H3.83341V28.75H1.91675V17.25H3.83341V13.4167H5.75008V9.58335H7.66675V7.66669H9.58341V5.75002H13.4167V3.83335H17.2501V1.91669H28.7501V3.83335H32.5834V5.75002H36.4167V9.58335H34.5001V11.5H32.5834V13.4167H28.7501V11.5H17.2501V13.4167H13.4167V17.25H11.5001V28.75H13.4167V32.5834H17.2501V34.5H28.7501V32.5834H32.5834V28.75H34.5001V26.8334H23.0001V19.1667H44.0834Z"
                     fill="#EBF2BD"
@@ -275,34 +286,48 @@ export default function RegisterPage() {
                 </svg>
               </button>
               <button
-                onClick={() => handleSocialLogin("facebook")}
-                className="hover:scale-110 transition-transform"
+                onClick={() => handleSocialLogin("discord")}
+                className="hover:scale-110 active:scale-95 transition-transform"
+                aria-label="Cadastro com Discord"
               >
-                <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none" className="w-10 h-10 sm:w-11 sm:h-11">
+                  <path
+                    d="M43.8006 13.1388H41.6156V8.75438H39.4163V6.56938H37.2312V4.38437H32.8469V2.185H28.4769V0H17.5231V2.185H13.1388V4.38437H8.75438V6.56938H6.56938V8.75438H4.37V13.1388H2.185V17.5231H0V28.4769H2.185V32.8613H4.37V37.2312H6.56938V39.4306H8.75438V41.6156H13.1388V43.815H17.5231V46H28.4769V43.815H32.8469V41.6156H37.2312V39.4306H39.4163V37.2312H41.6156V32.8613H43.8006V28.4769H46V17.5231H43.8006V13.1388ZM41.6156 30.6619H39.4163V32.8613H37.2312V35.0462H35.0462V37.2312H26.2775V35.0462H32.8469V30.6619H13.1388V35.0462H19.7081V37.2312H10.9394V35.0462H8.75438V32.8613H6.56938V30.6619H4.37V19.7081H6.56938V15.3381H8.75438V13.1388H10.9394V10.9537H19.7081V13.1388H26.2775V10.9537H35.0462V13.1388H37.2312V15.3381H39.4163V19.7081H41.6156V30.6619Z"
+                    fill="#EBF2BD"
+                  />
+                  <path
+                    d="M26.2775 19.7081H30.6619V24.0925H26.2775V19.7081ZM15.3237 19.7081H19.7081V24.0925H15.3237V19.7081Z"
+                    fill="#EBF2BD"
+                  />
+                </svg>
+              </button>
+              <button
+                onClick={() => handleSocialLogin("facebook")}
+                className="hover:scale-110 active:scale-95 transition-transform"
+                aria-label="Cadastro com Facebook"
+              >
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none" className="w-10 h-10 sm:w-11 sm:h-11">
                   <path
                     d="M44.0834 17.25V28.75H42.1667V32.5834H40.2501V36.4167H38.3334V38.3334H36.4167V40.25H32.5834V42.1667H28.7501V44.0834H26.8334V28.75H30.6667V26.8334H32.5834V23H26.8334V17.25H28.7501V15.3334H32.5834V9.58335H24.9167V11.5H21.0834V15.3334H19.1667V23H13.4167V28.75H19.1667V44.0834H17.2501V42.1667H13.4167V40.25H9.58342V38.3334H7.66675V36.4167H5.75008V32.5834H3.83341V28.75H1.91675V17.25H3.83341V13.4167H5.75008V9.58335H7.66675V7.66669H9.58342V5.75002H13.4167V3.83335H17.2501V1.91669H28.7501V3.83335H32.5834V5.75002H36.4167V7.66669H38.3334V9.58335H40.2501V13.4167H42.1667V17.25H44.0834Z"
                     fill="#EBF2BD"
                   />
                 </svg>
               </button>
-              <button
-                onClick={() => handleSocialLogin("twitter")}
-                className="hover:scale-110 transition-transform"
-              >
-                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M45.8333 10.4167H47.9166V12.5H45.8333V10.4167ZM45.8333 6.25H47.9166V8.33333H45.8333V6.25ZM43.7499 10.4167V12.5H45.8333V14.5833H43.7499V25H41.6666V29.1667H39.5833V33.3333H37.4999V35.4167H35.4166V37.5H33.3333V39.5833H29.1666V41.6667H22.9166V43.75H8.33325V41.6667H4.16659V39.5833H2.08325V37.5H6.24992V39.5833H12.4999V37.5H14.5833V35.4167H10.4166V33.3333H8.33325V31.25H6.24992V29.1667H10.4166V27.0833H6.24992V25H4.16659V20.8333H8.33325V18.75H6.24992V16.6667H4.16659V8.33333H6.24992V10.4167H8.33325V12.5H10.4166V14.5833H14.5833V16.6667H20.8333V18.75H24.9999V10.4167H27.0833V8.33333H29.1666V6.25H39.5833V8.33333H45.8333V10.4167H43.7499Z"
-                    fill="#EBF2BD"
-                  />
-                </svg>
-              </button>
             </div>
+
+            {/* Login Link */}
+            <p className="text-center font-grenze text-sm sm:text-base" style={{ color: '#EBF2BD' }}>
+              Já começou sua jornada?{' '}
+              <Link href="/login" className="underline hover:opacity-80 transition-opacity" style={{ color: '#D5A82D' }}>
+                Continue sua lenda
+              </Link>
+            </p>
           </div>
         </div>
 
         {/* Right Panel - Image */}
-        <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gray-300 rounded-r-lg" />
+        <div className="hidden lg:block lg:w-1/2 relative overflow-hidden rounded-r-3xl">
+          <div className="absolute inset-0 bg-gray-300" />
           <img
             src="https://api.builder.io/api/v1/image/assets/TEMP/94531215b683ea45ba81381247c7039f9f0b4a4a?width=1472"
             alt="Fantasy Castle"

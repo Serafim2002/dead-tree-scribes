@@ -45,9 +45,9 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center blur-sm"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/f1751cfadbade89652d0a68ef1164ccb32a373ad?width=2944)',
+          backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/56c8f99fb4659d53148b4acbafcf1f14fe924462?width=2944)',
           filter: 'blur(5px)',
         }}
       />
@@ -56,7 +56,7 @@ export default function ForgotPasswordPage() {
       <div className="relative w-full max-w-6xl flex flex-col lg:flex-row rounded-3xl overflow-hidden shadow-2xl">
         {/* Left Panel - Form */}
         <div
-          className="flex-1 p-8 lg:p-12 backdrop-blur-sm"
+          className="flex-1 p-6 sm:p-8 lg:p-12 backdrop-blur-sm"
           style={{
             background:
               'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 17.71%, rgba(255, 237, 37, 0.11) 83.65%), rgba(115, 53, 8, 0.85)',
@@ -64,10 +64,10 @@ export default function ForgotPasswordPage() {
               '0 752px 210px 0 rgba(0, 0, 0, 0.01), 0 481px 192px 0 rgba(0, 0, 0, 0.04), 0 271px 162px 0 rgba(0, 0, 0, 0.15), 0 120px 120px 0 rgba(0, 0, 0, 0.26), 0 30px 66px 0 rgba(0, 0, 0, 0.29)',
           }}
         >
-          <div className="max-w-md mx-auto space-y-6">
+          <div className="max-w-md mx-auto space-y-4 sm:space-y-6">
             {/* Title */}
             <h1
-              className="text-center font-grenze text-4xl lg:text-5xl font-normal"
+              className="text-center font-grenze text-3xl sm:text-4xl lg:text-5xl font-normal"
               style={{
                 color: '#EBF2BD',
                 textShadow:
@@ -79,7 +79,7 @@ export default function ForgotPasswordPage() {
 
             {/* Subtitle */}
             <p
-              className="text-center font-grenze text-2xl lg:text-3xl font-normal"
+              className="text-center font-grenze text-xl sm:text-2xl lg:text-3xl font-normal"
               style={{
                 color: '#FFC592',
                 textShadow:
@@ -91,7 +91,7 @@ export default function ForgotPasswordPage() {
 
             {/* Description */}
             <p
-              className="text-center font-grenze text-lg lg:text-xl font-normal"
+              className="text-center font-grenze text-base sm:text-lg lg:text-xl font-normal"
               style={{
                 color: '#FFC592',
                 textShadow:
@@ -116,7 +116,7 @@ export default function ForgotPasswordPage() {
                 <p className="text-sm">
                   Verifique seu pergaminho de contato para instruções de recuperação.
                 </p>
-                <Link href="/login" className="inline-block mt-2 underline" style={{ color: '#D5A82D' }}>
+                <Link href="/login" className="inline-block mt-2 underline hover:opacity-80 transition-opacity" style={{ color: '#D5A82D' }}>
                   Voltar ao reino
                 </Link>
               </div>
@@ -124,7 +124,7 @@ export default function ForgotPasswordPage() {
 
             {/* Form */}
             {!success && (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4">
                 {/* Email Input */}
                 <div className="relative">
                   <div
@@ -139,8 +139,7 @@ export default function ForgotPasswordPage() {
                       height="34"
                       viewBox="0 0 34 34"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="flex-shrink-0"
+                      className="flex-shrink-0 w-5 h-5 sm:w-7 sm:h-7"
                     >
                       <path
                         d="M27.625 2.125H11.6875C10.2791 2.12669 8.92878 2.68694 7.93286 3.68286C6.93694 4.67878 6.37669 6.02906 6.375 7.4375V23.375H4.25C3.077 23.375 2.125 24.3291 2.125 25.5V27.625C2.125 29.9689 4.03112 31.875 6.375 31.875H21.25C23.5939 31.875 25.5 29.9689 25.5 27.625V10.625H29.75C30.923 10.625 31.875 9.67088 31.875 8.5V6.375C31.875 4.03112 29.9689 2.125 27.625 2.125ZM6.375 29.75C5.202 29.75 4.25 28.7959 4.25 27.625V25.5H17V27.625C17 28.3985 17.2083 29.1252 17.5716 29.75H6.375ZM23.375 27.625C23.3505 28.1721 23.1159 28.6888 22.7201 29.0673C22.3243 29.4458 21.7977 29.6571 21.25 29.6571C20.7023 29.6571 20.1757 29.4458 19.7799 29.0673C19.3841 28.6888 19.1495 28.1721 19.125 27.625V25.5C19.125 24.3291 18.173 23.375 17 23.375H8.5V7.4375C8.5 5.68012 9.93012 4.25 11.6875 4.25H23.9466C23.5728 4.89587 23.3757 5.62877 23.375 6.375V27.625ZM29.75 8.5H25.5V6.375C25.5245 5.82786 25.7591 5.31124 26.1549 4.93271C26.5507 4.55419 27.0773 4.34293 27.625 4.34293C28.1727 4.34293 28.6993 4.55419 29.0951 4.93271C29.4909 5.31124 29.7255 5.82786 29.75 6.375V8.5Z"
@@ -152,7 +151,7 @@ export default function ForgotPasswordPage() {
                       {...register("email")}
                       type="email"
                       placeholder="Pergaminho de contato"
-                      className="flex-1 bg-transparent border-0 outline-none font-grenze text-lg placeholder:text-[#EBF2BD]/50"
+                      className="flex-1 bg-transparent border-0 outline-none font-grenze text-base sm:text-lg placeholder:text-[#EBF2BD]/50"
                       style={{ color: '#EBF2BD' }}
                     />
                   </div>
@@ -175,8 +174,7 @@ export default function ForgotPasswordPage() {
                       height="38"
                       viewBox="0 0 38 38"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="flex-shrink-0"
+                      className="flex-shrink-0 w-5 h-5 sm:w-7 sm:h-7"
                     >
                       <path
                         fillRule="evenodd"
@@ -190,7 +188,7 @@ export default function ForgotPasswordPage() {
                       {...register("newPassword")}
                       type="password"
                       placeholder="Nova chave secreta"
-                      className="flex-1 bg-transparent border-0 outline-none font-grenze text-lg placeholder:text-[#EBF2BD]/50"
+                      className="flex-1 bg-transparent border-0 outline-none font-grenze text-base sm:text-lg placeholder:text-[#EBF2BD]/50"
                       style={{ color: '#EBF2BD' }}
                     />
                   </div>
@@ -203,7 +201,7 @@ export default function ForgotPasswordPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-4 rounded-lg font-grenze text-2xl font-normal disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+                  className="w-full py-3 sm:py-4 rounded-lg font-grenze text-xl sm:text-2xl font-normal disabled:opacity-50 disabled:cursor-not-allowed transition-opacity hover:opacity-90"
                   style={{
                     background: '#CF7F2F',
                     color: '#EBF2BD',
@@ -212,21 +210,24 @@ export default function ForgotPasswordPage() {
                   {isLoading ? 'Forjando...' : 'FORJAR NOVA CHAVE'}
                 </button>
 
-                {/* Back to Login */}
-                <p className="text-center font-grenze text-base" style={{ color: '#EBF2BD' }}>
-                  Lembrou sua chave?{' '}
-                  <Link href="/login" className="underline" style={{ color: '#D5A82D' }}>
-                    Voltar ao reino
+                {/* Cancel Link */}
+                <div className="text-center">
+                  <Link
+                    href="/login"
+                    className="inline-block font-grenze text-base sm:text-lg underline hover:opacity-80 transition-opacity"
+                    style={{ color: '#D5A82D' }}
+                  >
+                    CANCELAR
                   </Link>
-                </p>
+                </div>
               </form>
             )}
           </div>
         </div>
 
         {/* Right Panel - Image */}
-        <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gray-300 rounded-r-lg" />
+        <div className="hidden lg:block lg:w-1/2 relative overflow-hidden rounded-r-3xl">
+          <div className="absolute inset-0 bg-gray-300" />
           <img
             src="https://api.builder.io/api/v1/image/assets/TEMP/94531215b683ea45ba81381247c7039f9f0b4a4a?width=1472"
             alt="Fantasy Castle"
