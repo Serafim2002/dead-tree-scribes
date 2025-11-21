@@ -259,6 +259,52 @@ export default function RegisterPage() {
               </button>
             </form>
 
+            {/* OR Divider */}
+            <div className="flex items-center gap-4 py-2">
+              <div className="flex-1 h-px" style={{ background: '#EBF2BD' }} />
+              <span className="font-grenze text-lg sm:text-xl" style={{ color: '#EBF2BD' }}>
+                OR
+              </span>
+              <div className="flex-1 h-px" style={{ background: '#EBF2BD' }} />
+            </div>
+
+            {/* Social Login Buttons */}
+            <div className="flex items-center justify-center gap-4">
+              {/* Google */}
+              <button
+                type="button"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="Cadastro com Google"
+              >
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
+                  <path d="M44.0834 19.1667V28.75H42.1667V32.5834H40.2501V36.4167H38.3334V38.3334H36.4167V40.25H32.5834V42.1667H28.7501V44.0834H17.2501V42.1667H13.4167V40.25H9.58341V38.3334H7.66675V36.4167H5.75008V32.5834H3.83341V28.75H1.91675V17.25H3.83341V13.4167H5.75008V9.58335H7.66675V7.66669H9.58341V5.75002H13.4167V3.83335H17.2501V1.91669H28.7501V3.83335H32.5834V5.75002H36.4167V9.58335H34.5001V11.5H32.5834V13.4167H28.7501V11.5H17.2501V13.4167H13.4167V17.25H11.5001V28.75H13.4167V32.5834H17.2501V34.5H28.7501V32.5834H32.5834V28.75H34.5001V26.8334H23.0001V19.1667H44.0834Z" fill="#EBF2BD"/>
+                </svg>
+              </button>
+
+              {/* Discord */}
+              <button
+                type="button"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="Cadastro com Discord"
+              >
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
+                  <path d="M43.8006 13.1388H41.6156V8.75438H39.4162V6.56938H37.2313V4.38438H32.8469V2.185H28.4769V0H17.5231V2.185H13.1388V4.38438H8.75438V6.56938H6.56938V8.75438H4.37V13.1388H2.185V17.5231H0V28.4769H2.185V32.8613H4.37V37.2313H6.56938V39.4306H8.75438V41.6156H13.1388V43.815H17.5231V46H28.4769V43.815H32.8469V41.6156H37.2313V39.4306H39.4162V37.2313H41.6156V32.8613H43.8006V28.4769H46V17.5231H43.8006V13.1388ZM41.6156 30.6619H39.4162V32.8613H37.2313V35.0462H35.0462V37.2313H26.2775V35.0462H32.8469V30.6619H13.1388V35.0462H19.7081V37.2313H10.9394V35.0462H8.75438V32.8613H6.56938V30.6619H4.37V19.7081H6.56938V15.3381H8.75438V13.1388H10.9394V10.9537H19.7081V13.1388H26.2775V10.9537H35.0462V13.1388H37.2313V15.3381H39.4162V19.7081H41.6156V30.6619Z" fill="#EBF2BD"/>
+                  <path d="M26.2775 19.7081H30.6619V24.0925H26.2775V19.7081ZM15.3237 19.7081H19.7081V24.0925H15.3237V19.7081Z" fill="#EBF2BD"/>
+                </svg>
+              </button>
+
+              {/* Facebook */}
+              <button
+                type="button"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="Cadastro com Facebook"
+              >
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
+                  <path d="M44.0834 17.25V28.75H42.1667V32.5834H40.2501V36.4167H38.3334V38.3334H36.4167V40.25H32.5834V42.1667H28.7501V44.0834H26.8334V28.75H30.6667V26.8334H32.5834V23H26.8334V17.25H28.7501V15.3334H32.5834V9.58335H24.9167V11.5H21.0834V15.3334H19.1667V23H13.4167V28.75H19.1667V44.0834H17.2501V42.1667H13.4167V40.25H9.58342V38.3334H7.66675V36.4167H5.75008V32.5834H3.83341V28.75H1.91675V17.25H3.83341V13.4167H5.75008V9.58335H7.66675V7.66669H9.58342V5.75002H13.4167V3.83335H17.2501V1.91669H28.7501V3.83335H32.5834V5.75002H36.4167V7.66669H38.3334V9.58335H40.2501V13.4167H42.1667V17.25H44.0834Z" fill="#EBF2BD"/>
+                </svg>
+              </button>
+            </div>
+
             {/* Login Link */}
             <p className="text-center font-grenze text-sm sm:text-base" style={{ color: '#EBF2BD' }}>
               Já começou sua jornada?{' '}

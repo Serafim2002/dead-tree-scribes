@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 
 export interface User {
-  user_metadata: any
   id: string
   email: string
   username: string

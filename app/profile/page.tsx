@@ -50,7 +50,7 @@ function ProfilePageContent() {
                 </svg>
               </div>
               <h2 className="font-grenze text-3xl mb-2 text-accent">
-                {user?.user_metadata?.username || "Aventureiro"}
+                {(user as any)?.user_metadata?.username || "Aventureiro"}
               </h2>
               <p className="font-grenze text-lg text-foreground">
                 {user?.email}
@@ -64,7 +64,7 @@ function ProfilePageContent() {
                     Nome de Usuário
                   </label>
                   <div className="px-4 py-3 rounded-lg border-2 border-accent bg-primary/50 dark:bg-primary-dark/50 text-accent">
-                    {user?.user_metadata?.username || "N/A"}
+                    {(user as any)?.user_metadata?.username || "N/A"}
                   </div>
                 </div>
 
