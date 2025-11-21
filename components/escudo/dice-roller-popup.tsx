@@ -1,6 +1,6 @@
 "use client"
 
-import { JSX, useState } from "react"
+import React, { useState } from "react"
 import Image from "next/image"
 
 interface DiceRollerPopupProps {
@@ -38,7 +38,7 @@ export default function DiceRollerPopup({ isOpen, onClose }: DiceRollerPopupProp
     }, interval)
   }
 
-  const diceIcons: Record<DiceType, JSX.Element> = {
+  const diceIcons: Record<DiceType, React.ReactElement> = {
     4: (
       <svg width="60" height="60" viewBox="0 0 61 60" fill="none" className="w-full h-full">
         <path d="M33.5755 37.8749H35.7255V40.8999H33.5755V44.9999H29.8005V40.8999H22.0505L21.8755 38.5249L29.7755 26.0499H33.5755V37.8749ZM25.6255 37.8749H29.8005V31.1749L25.6255 37.8749ZM55.0005 52.4999H5.00049C4.10049 52.4999 3.27549 52.0249 2.82549 51.2499C2.60595 50.868 2.49461 50.4334 2.50341 49.993C2.51222 49.5525 2.64085 49.1228 2.87549 48.7499L27.8755 7.4999C28.7505 5.9499 31.2505 5.9499 32.1505 7.4999L57.1505 48.7499C57.375 49.1279 57.495 49.5588 57.4984 49.9985C57.5018 50.4381 57.3883 50.8708 57.1696 51.2522C56.9509 51.6336 56.6349 51.9501 56.2538 52.1694C55.8726 52.3886 55.4401 52.5026 55.0005 52.4999ZM9.45049 47.4999H50.5755L30.0005 13.5749L9.45049 47.4999Z" fill="currentColor"/>
@@ -88,17 +88,18 @@ export default function DiceRollerPopup({ isOpen, onClose }: DiceRollerPopupProp
       }`}
       onClick={handleClose}
     >
-      <div 
-        className={`relative w-full max-w-md rounded-xl overflow-hidden shadow-2xl transform transition-all duration-300 ${
+      <div
+        className={`relative w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 ${
           isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
         }`}
         style={{
-          background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(45, 23, 5, 0.25) 100%), #5B300B',
-          boxShadow: '0 0 40px rgba(207, 127, 47, 0.3), 0 8px 32px rgba(0, 0, 0, 0.5)'
+          background: 'linear-gradient(180deg, rgba(45, 23, 5, 0.95) 0%, rgba(91, 48, 11, 0.98) 100%)',
+          boxShadow: '0 0 50px rgba(213, 168, 45, 0.4), 0 10px 40px rgba(0, 0, 0, 0.6)',
+          border: '2px solid rgba(213, 168, 45, 0.3)'
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="absolute inset-0 opacity-15 pointer-events-none">
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
           <Image
             src="https://api.builder.io/api/v1/image/assets/TEMP/8484feb0e3ce079ef1dd58849f88bfd7d376d113?width=618"
             alt=""
@@ -111,19 +112,22 @@ export default function DiceRollerPopup({ isOpen, onClose }: DiceRollerPopupProp
         <div className="relative p-6 md:p-8">
           <button
             onClick={handleClose}
-            className="absolute top-3 right-4 text-[#EBF2BD] font-grenze text-2xl hover:scale-110 transition-transform z-10"
+            className="absolute top-2 right-3 text-[#EBF2BD] font-grenze text-xl hover:scale-110 transition-transform z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#CF7F2F]/30"
           >
-            X
+            ×
           </button>
 
-          <h2 
-            className="text-center font-grenze text-lg text-[#FFC592] mb-6 px-8"
+          <h2
+            className="text-center font-grenze text-xl md:text-2xl text-[#EBF2BD] mb-6 px-4"
             style={{
-              textShadow: '0 0 10px rgba(219, 171, 41, 0.02), 0 0 9px rgba(219, 171, 41, 0.15), 0 0 8px rgba(219, 171, 41, 0.50), 0 0 6px rgba(219, 171, 41, 0.85), 0 0 3px rgba(219, 171, 41, 0.98)'
+              textShadow: '0 0 15px rgba(235, 242, 189, 0.5), 0 2px 4px rgba(0, 0, 0, 0.8)'
             }}
           >
-            Escolha seu(s) dados e descubra o que o destino tem a oferecer!
+            Escolha seus dados
           </h2>
+          <p className="text-center font-grenze text-sm text-[#FFC592] mb-6 px-4 opacity-80">
+            Descubra o que o destino tem a oferecer!
+          </p>
 
           {selectedDice && (
             <div className="flex flex-col items-center justify-center py-4 mb-4">
@@ -173,30 +177,20 @@ export default function DiceRollerPopup({ isOpen, onClose }: DiceRollerPopupProp
             </div>
           )}
 
-          <div className="grid grid-cols-6 gap-3">
+          <div className="grid grid-cols-6 gap-2 md:gap-3">
             {([4, 6, 8, 10, 12, 20] as DiceType[]).map((sides) => (
               <button
                 key={sides}
                 onClick={() => rollDice(sides)}
                 disabled={isRolling}
-                className={`relative flex items-center justify-center transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed ${
-                  selectedDice === sides ? 'scale-105' : ''
+                className={`relative flex items-center justify-center p-2 rounded-lg transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed ${
+                  selectedDice === sides ? 'bg-[#CF7F2F]/40 scale-105' : 'hover:bg-[#CF7F2F]/20'
                 }`}
               >
-                {selectedDice === sides && (
-                  <div 
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background: 'rgba(207, 127, 47, 0.55)',
-                      filter: 'blur(4px)',
-                      transform: 'scale(1.3)'
-                    }}
-                  />
-                )}
-                <div 
-                  className="relative w-14 h-14 text-[#D5A82D]"
+                <div
+                  className="relative w-10 h-10 md:w-12 md:h-12 text-[#D5A82D]"
                   style={{
-                    filter: 'drop-shadow(0 0 1px rgba(217, 160, 38, 0.98)) drop-shadow(0 0 2px rgba(217, 160, 38, 0.85)) drop-shadow(0 0 3px rgba(217, 160, 38, 0.50)) drop-shadow(0 0 3px rgba(217, 160, 38, 0.15)) drop-shadow(0 0 3px rgba(217, 160, 38, 0.02))'
+                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 8px rgba(213, 168, 45, 0.6))'
                   }}
                 >
                   {diceIcons[sides]}

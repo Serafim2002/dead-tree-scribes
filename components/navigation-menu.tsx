@@ -3,8 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { supabase } from "@/lib/supabase"
-import ThemeToggle from "./theme-toggle"
+import { useUser } from "@/lib/useUser"
 
 interface NavigationMenuProps {
   isOpen: boolean
@@ -13,12 +12,13 @@ interface NavigationMenuProps {
 
 export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps) {
   const router = useRouter()
+  const { logout } = useUser()
   const [isLoading, setIsLoading] = useState(false)
 
   const handleLogout = async () => {
     setIsLoading(true)
     try {
-      await supabase.auth.signOut()
+      logout()
       router.push("/login")
       onClose()
     } catch (error) {
@@ -40,29 +40,22 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
       />
 
       {/* Menu Dropdown */}
-      <div className="fixed top-16 right-4 md:top-20 md:right-8 z-50 animate-in slide-in-from-top-2">
+      <div className="fixed top-14 right-3 md:top-16 md:right-4 z-50 animate-in slide-in-from-top-2">
         <div
           className="rounded-b-2xl overflow-hidden shadow-2xl"
           style={{
-            width: '100vw',
-            maxWidth: '652px',
+            width: 'calc(100vw - 24px)',
+            maxWidth: '420px',
           }}
         >
           {/* Menu Items */}
-          <div
-            className="border-2"
-            style={{
-              borderColor: '#EBF2BD',
-              background: '#CF7F2F',
-            }}
-          >
+          <div className="border-2 border-[#EBF2BD] bg-[#CF7F2F] divide-y-2 divide-[#EBF2BD]">
             <Link
-              href="/profile"
+              href="/conta"
               onClick={onClose}
-              className="flex items-center justify-center h-14 md:h-16 border-b-2 hover:bg-[#B8681F] transition-colors"
-              style={{ borderColor: '#EBF2BD' }}
+              className="flex items-center justify-center h-14 md:h-16 hover:brightness-90 dark:hover:brightness-110 transition-all"
             >
-              <span className="font-grenze text-2xl md:text-3xl" style={{ color: '#5B300B' }}>
+              <span className="font-grenze text-xl md:text-2xl text-[#5B300B] font-normal">
                 Minha Conta
               </span>
             </Link>
@@ -70,40 +63,42 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
             <Link
               href="/escudo-do-mestre"
               onClick={onClose}
-              className="flex items-center justify-center h-14 md:h-16 border-b-2 hover:bg-[#B8681F] transition-colors"
-              style={{ borderColor: '#EBF2BD' }}
+              className="flex items-center justify-center h-14 md:h-16 hover:brightness-90 dark:hover:brightness-110 transition-all"
             >
-              <span className="font-grenze text-2xl md:text-3xl" style={{ color: '#5B300B' }}>
-                Escudo do Mestre 👑
+              <span className="font-grenze text-xl md:text-2xl text-[#5B300B] font-normal">
+                Escudo do Mestre
               </span>
             </Link>
 
             <Link
               href="/"
               onClick={onClose}
-              className="flex items-center justify-center h-14 md:h-16 border-b-2 hover:bg-[#B8681F] transition-colors"
-              style={{ borderColor: '#EBF2BD' }}
+              className="flex items-center justify-center h-16 md:h-16 hover:brightness-90 dark:hover:brightness-110 transition-all"
             >
-              <span className="font-grenze text-2xl md:text-3xl" style={{ color: '#5B300B' }}>
+              <span className="font-grenze text-xl md:text-2xl text-[#5B300B] font-normal text-center px-4">
                 Voltar para a introdução
               </span>
             </Link>
           </div>
 
-          {/* Logout Button */}
-          <div
-            className="border-2 border-t-0"
-            style={{
-              borderColor: '#EBF2BD',
-              background: '#CF7F2F',
-            }}
-          >
+          {/* Assinaturas & Logout Section */}
+          <div className="border-2 border-t-0 border-[#EBF2BD] bg-[#CF7F2F] divide-y-2 divide-[#EBF2BD]">
+            <Link
+              href="/assinaturas"
+              onClick={onClose}
+              className="flex items-center justify-center h-16 md:h-17 hover:brightness-90 dark:hover:brightness-110 transition-all"
+            >
+              <span className="font-grenze text-xl md:text-2xl text-[#5B300B] font-normal">
+                Assinaturas
+              </span>
+            </Link>
+
             <button
               onClick={handleLogout}
               disabled={isLoading}
-              className="w-full flex items-center justify-center h-16 md:h-20 hover:bg-[#B8681F] transition-colors disabled:opacity-50"
+              className="w-full flex items-center justify-center h-16 md:h-17 hover:brightness-90 dark:hover:brightness-110 transition-all disabled:opacity-50"
             >
-              <span className="font-grenze text-2xl md:text-3xl" style={{ color: '#5B300B' }}>
+              <span className="font-grenze text-xl md:text-2xl text-[#5B300B] font-normal">
                 {isLoading ? 'Saindo...' : 'Sair'}
               </span>
             </button>

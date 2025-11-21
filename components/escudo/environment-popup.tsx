@@ -103,17 +103,18 @@ export default function EnvironmentPopup({ isOpen, onClose }: EnvironmentPopupPr
       }`}
       onClick={handleClose}
     >
-      <div 
-        className={`relative w-full max-w-md rounded-xl overflow-hidden shadow-2xl transform transition-all duration-300 ${
+      <div
+        className={`relative w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-300 ${
           isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
         }`}
         style={{
-          background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(45, 23, 5, 0.25) 100%), #5B300B',
-          boxShadow: '0 0 40px rgba(207, 127, 47, 0.3), 0 8px 32px rgba(0, 0, 0, 0.5)'
+          background: 'linear-gradient(180deg, rgba(45, 23, 5, 0.95) 0%, rgba(91, 48, 11, 0.98) 100%)',
+          boxShadow: '0 0 50px rgba(213, 168, 45, 0.4), 0 10px 40px rgba(0, 0, 0, 0.6)',
+          border: '2px solid rgba(213, 168, 45, 0.3)'
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="absolute inset-0 opacity-15 pointer-events-none">
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
           <Image
             src="https://api.builder.io/api/v1/image/assets/TEMP/512e64c9fd08d4e53b8f3e01e6655a64d98442fb?width=618"
             alt=""
@@ -126,19 +127,22 @@ export default function EnvironmentPopup({ isOpen, onClose }: EnvironmentPopupPr
         <div className="relative p-6 md:p-8">
           <button
             onClick={handleClose}
-            className="absolute top-3 right-4 text-[#EBF2BD] font-grenze text-2xl hover:scale-110 transition-transform z-10"
+            className="absolute top-2 right-3 text-[#EBF2BD] font-grenze text-xl hover:scale-110 transition-transform z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#CF7F2F]/30"
           >
-            X
+            ×
           </button>
 
-          <h2 
-            className="text-center font-grenze text-lg text-[#FFC592] mb-6 px-4"
+          <h2
+            className="text-center font-grenze text-xl md:text-2xl text-[#EBF2BD] mb-4 px-4"
             style={{
-              textShadow: '1px 0 10px rgba(219, 171, 41, 0.02), 1px 0 9px rgba(219, 171, 41, 0.15), 0 0 8px rgba(219, 171, 41, 0.50), 0 0 6px rgba(219, 171, 41, 0.85), 0 0 3px rgba(219, 171, 41, 0.98)'
+              textShadow: '0 0 15px rgba(235, 242, 189, 0.5), 0 2px 4px rgba(0, 0, 0, 0.8)'
             }}
           >
-            Controle o fluxo do mundo ao seu desejar
+            Controle do Tempo
           </h2>
+          <p className="text-center font-grenze text-sm text-[#FFC592] mb-6 px-4 opacity-80">
+            Controle o fluxo do mundo ao seu desejar
+          </p>
 
           <div className="flex justify-center mb-4">
             <div className="relative">
@@ -268,9 +272,12 @@ export default function EnvironmentPopup({ isOpen, onClose }: EnvironmentPopupPr
 
           <button
             onClick={handleSave}
-            className="w-full py-2.5 rounded-lg bg-[#D5A82D] text-[#5B300B] font-grenze text-lg hover:scale-105 transition-transform"
+            className="w-full py-3 rounded-lg bg-[#D5A82D] text-[#5B300B] font-grenze text-lg font-bold hover:scale-105 hover:bg-[#E6B933] transition-all shadow-lg"
+            style={{
+              boxShadow: '0 4px 12px rgba(213, 168, 45, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.2)'
+            }}
           >
-            Salvar
+            Salvar Alterações
           </button>
         </div>
       </div>

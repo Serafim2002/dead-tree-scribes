@@ -12,6 +12,7 @@ const config: Config = {
       fontFamily: {
         grenze: ["var(--font-grenze)", "Grenze", "serif"],
         cinzel: ["Cinzel", "serif"],
+        itim: ["var(--font-itim)", "Itim", "cursive"],
       },
     },
   },
