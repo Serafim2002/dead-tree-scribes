@@ -28,45 +28,58 @@ const onSubmit = async (data: LoginInput) => {
   setIsLoading(true);
   setError(null);
 
-  try {
-    const { data: user, error } = await supabase
-      .from("Users")
-      .select("*")
-      .eq("email", data.email)
-      .eq("password", data.password)
-      .single();
+    try {
+      const { data: user, error: queryError } = await supabase
+        .from("Users")
+        .select("*")
+        .eq("email", data.email)
+        .eq("password", data.password)
+        .single()
 
-    if (error || !user) throw new Error("Usuário ou senha incorretos 🧙‍♂️");
+      if (queryError || !user) {
+        throw new Error("Usuário ou senha incorretos 🧙‍♂️")
+      }
 
-    // remove senha antes de salvar localmente (opcional)
-    const { password, ...userWithoutPassword } = user;
+      // Remove senha antes de salvar localmente
+      const { password, ...userWithoutPassword } = user
+      localStorage.setItem("user", JSON.stringify(userWithoutPassword))
 
-    localStorage.setItem("user", JSON.stringify(userWithoutPassword));
-    router.push("/");
-  } catch (err: any) {
-    setError(err.message || "Erro ao entrar no reino ⚔️");
+      router.push("/")
+    } catch (err: any) {
+      setError(err.message || "Erro ao entrar no reino ⚔️")
   } finally {
-    setIsLoading(false);
+    setIsLoading(false)
   }
-};
+}
 
-const handleSocialLogin = async (provider: "google" | "facebook" | "twitter") => {
+const handleSocialLogin = async (
+  provider: "google" | "facebook" | "discord"
+) => {
   try {
-    setError(null);
+    // detectar se está rodando localmente
+    const isLocalhost =
+      typeof window !== "undefined" &&
+      (window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1");
 
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    // definir URL de redirecionamento conforme ambiente
+    const redirectTo = isLocalhost
+      ? "http://localhost:3000/auth/callback"
+      : "https://dead-tree-scribes-serafims-projects-cab5ff56.vercel.app/auth/callback";
+
+    const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`
-      }
+        redirectTo,
+      },
     });
 
     if (error) throw error;
-
   } catch (err: any) {
     setError(err.message);
   }
 };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
@@ -282,8 +295,9 @@ const handleSocialLogin = async (provider: "google" | "facebook" | "twitter") =>
                 </svg>
               </button>
               <button
-                onClick={() => handleSocialLogin("twitter")}
-                className="hover:scale-110 transition-transform"
+                onClick={() => handleSocialLogin("facebook")}
+                className="hover:scale-110 active:scale-95 transition-transform"
+                aria-label="Login com Facebook"
               >
                 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
