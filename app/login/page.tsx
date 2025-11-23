@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-
 export default function LoginPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
@@ -25,9 +24,9 @@ export default function LoginPage() {
     resolver: zodResolver(loginSchema),
   })
 
-  const onSubmit = async (data: LoginInput) => {
-    setIsLoading(true)
-    setError(null)
+const onSubmit = async (data: LoginInput) => {
+  setIsLoading(true);
+  setError(null);
 
     try {
       const { data: user, error: queryError } = await supabase
@@ -53,18 +52,36 @@ export default function LoginPage() {
   }
 }
 
-const handleSocialLogin = async (provider: "google" | "facebook" | "discord") => {
+const handleSocialLogin = async (
+  provider: "google" | "facebook" | "discord"
+) => {
   try {
+    // detectar se está rodando localmente
+    const isLocalhost =
+      typeof window !== "undefined" &&
+      (window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1");
+
+    // definir URL de redirecionamento conforme ambiente
+    const redirectTo = isLocalhost
+      ? "http://localhost:3000/auth/callback"
+      : "https://dead-tree-scribes-serafims-projects-cab5ff56.vercel.app/auth/callback";
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
-    })
-    if (error) throw error
-  } catch (err: any) {
-    setError(err.message)
-  }
-}
+      options: {
+        redirectTo,
+      },
+    });
 
-  return (
+    if (error) throw error;
+  } catch (err: any) {
+    setError(err.message);
+  }
+};
+
+
+return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       {/* Background Image */}
       <div
