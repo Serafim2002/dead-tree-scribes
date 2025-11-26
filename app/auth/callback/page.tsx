@@ -15,19 +15,27 @@ export default function AuthCallback() {
 
       if (!user) return router.push("/login");
 
-      // pega dados do google
       const email = user.email;
-      const name = user.user_metadata.full_name;
-      const avatar = user.user_metadata.avatar_url;
 
-      // cria/atualiza usuário no seu Users
+      // Compatibilidade com Google E Facebook
+      const name =
+        user.user_metadata.full_name || // Google
+        user.user_metadata.name || // Facebook
+        null;
+
+      const avatar =
+        user.user_metadata.avatar_url || // Google
+        user.user_metadata.picture || // Facebook
+        null;
+
+      // cria/atualiza usuário no Users
       await supabase.from("Users").upsert(
         {
           email,
           name,
           avatar,
         },
-        { onConflict: "email" } // evita duplicatas
+        { onConflict: "email" }
       );
 
       // salva localmente
