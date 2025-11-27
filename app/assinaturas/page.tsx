@@ -7,16 +7,19 @@ export default function AssinaturasPage() {
   const router = useRouter()
 
   return (
-    <section className="relative min-h-screen py-4 bg-[#2D1705] overflow-x-hidden">
-      {/* Dragon watermark background */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden" aria-hidden="true">
-        <svg 
-          viewBox="0 0 1062 676" 
-          className="w-full h-auto max-w-[1062px] opacity-100"
-          fill="none" 
+    <section className="relative min-h-screen py-8 md:py-12 bg-background overflow-x-hidden">
+      {/* Dragon watermark background - Fixed */}
+      <div className="fixed inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-[0.08] dark:opacity-[0.15] z-0" aria-hidden="true">
+        <svg
           xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          className="w-[1200px] max-w-none h-auto"
+          fill="none"
+          preserveAspectRatio="xMidYMid meet"
         >
-          <path d="M442.715 0V2.55963C396.27 55.6868 362.641 118.094 344.258 185.275C317.486 277.721 305.494 373.579 308.636 469.48C308.542 471.086 308.542 472.695 308.636 474.301C314.895 446.592 325.663 420.013 340.541 395.549C355.532 370.741 376.226 349.579 401.031 333.691C399.925 336.422 398.42 338.512 398.42 340.858C385.193 371.318 377.298 403.681 375.056 436.631C370.427 489.276 387.538 541.555 422.669 582.104C424.582 584.852 426.255 587.749 427.67 590.764L430.723 587.991C421.919 554.429 424.052 519.067 436.83 486.715C462.406 581.251 528.339 637.648 615.911 676C509.533 675.573 406.916 660.002 319.566 596.822C318.902 619.56 326.115 637.691 350.364 675.36C276.333 639.568 244.03 580.227 235.932 504.206C216.02 527.072 202.523 554.46 196.638 583.81C190.974 611.796 188.142 640.421 183.982 668.022C152.565 593.494 153.627 514.743 164.335 432.877C69.772 486.118 30.6989 572.207 0.564331 664.439C-1.08472 614.682 0.881836 564.875 6.44958 515.383C13.9722 442.945 32.5573 372.043 61.6741 304.853C88.2997 241.272 128.074 183.584 178.573 135.302C229.073 87.0208 289.24 49.157 355.409 24.0179C383.44 12.7574 412.741 4.69666 442.715 0ZM563.696 4.69265C577.236 26.9615 589.671 49.9129 604.981 70.3473C620.595 92.8614 637.434 114.563 655.427 135.362C660.706 141.015 667.134 145.561 674.313 148.716C681.491 151.872 689.267 153.571 697.155 153.706L677.464 64.8441C680.103 67.0869 682.254 69.8131 683.791 72.8643C697.066 92.4882 709.988 112.453 723.971 131.395C727.377 136.314 732.371 140.013 738.179 141.918C743.987 143.824 750.285 143.828 756.097 141.932C777.912 135.789 799.772 129.902 821.587 123.161C824.022 121.995 826.807 121.698 829.448 122.323C832.089 122.947 834.414 124.453 836.013 126.574C854.422 147.124 873.949 166.719 894.512 185.275C942.126 225.931 993.633 259.76 1062 255.153V257.926C1042.8 301.696 1023.77 345.508 1003.68 389.065C997.181 402.411 986.501 413.453 973.145 420.634C976.865 402.543 979.568 384.272 981.243 365.9C982.305 343.589 977.083 339.578 953.94 337.445C952.976 337.238 951.978 337.215 951.004 337.379C950.031 337.544 949.1 337.891 948.266 338.402C947.432 338.913 946.71 339.578 946.143 340.358C945.575 341.138 945.172 342.018 944.958 342.949C941.683 350.926 937.745 358.733 934.072 366.753C929.47 357.069 925.532 347.983 920.974 339.365C919.513 336.803 917.186 334.801 914.38 333.691C904.557 329.681 894.468 326.524 884.025 322.727L876.192 337.915C869.422 322.983 863.094 308.223 855.837 293.676C853.925 290.211 850.759 287.544 846.94 286.183C843.122 284.822 838.918 284.862 835.128 286.295V296.619C838.691 335.185 831.142 373.952 813.312 408.646C807.187 422.941 803.008 437.94 800.878 453.269C799.108 460.18 802.781 464.233 809.551 464.233L827.251 466.11C822.887 469.198 818.881 472.73 815.304 476.647C811.985 480.657 807.383 488.165 808.932 490.298C813.529 495.51 819.487 499.442 826.189 501.689C830.732 503.024 835.585 503.024 840.128 501.689C852.242 498.315 864.2 494.443 875.971 490.085C882.254 487.415 888.371 484.396 894.291 481.041L897.831 485.051L866.147 511.159C858.873 517.748 850.194 522.727 840.716 525.748C831.239 528.769 821.192 529.76 811.277 528.65C805.541 528.645 799.863 527.55 794.566 525.429C789.27 523.308 784.458 520.201 780.407 516.287C776.355 512.374 773.143 507.729 770.954 502.618C768.764 497.507 767.64 492.031 767.646 486.502C765.655 473.447 767.425 460.223 765.655 447.168C765.267 431.153 761.419 415.392 754.356 400.892C747.293 386.392 737.17 373.471 724.635 362.956C745.274 368.378 763.899 379.323 778.355 394.525C781.009 378.517 782.178 362.313 781.85 346.105C783.177 328.854 777.416 311.791 765.809 298.599C754.203 285.406 737.682 277.141 719.811 275.587C695.678 270.66 671.35 266.661 646.886 263.6C611.265 260.187 576.13 253.105 542.057 242.526C519.329 235.031 498.235 223.547 479.841 208.653C521.683 217.34 564.183 222.761 606.928 224.864C534.291 175.316 481.247 103.467 456.477 21.0743C503.205 84.212 553.916 143.382 627.726 178.961C600.664 122.96 579.223 64.6325 563.696 4.69265ZM821.145 170.344C822.472 176.871 823.534 183.355 825.304 189.712C828.579 202.083 832.517 214.327 835.792 226.741C836.002 228.834 837.018 230.775 838.64 232.181C840.262 233.587 842.372 234.355 844.553 234.335C861.545 236.254 878.361 238.729 896.902 241.032L821.145 170.344ZM646.046 285.741C654.602 285.898 663.135 286.654 671.578 288.002C695.121 289.493 717.781 297.213 737.069 310.313C743.643 314.599 748.885 320.527 752.236 327.462C755.588 334.397 756.922 342.08 756.097 349.689C752.493 341.468 746.532 334.409 738.914 329.339C731.296 324.269 722.336 321.398 713.085 321.064C686.177 318.304 659.027 323.355 635.116 335.568C613.433 345.551 600.954 367.99 604.318 390.942C607.291 413.267 618.004 433.968 634.718 449.685C658.767 473.591 687.574 492.57 719.413 505.485C756.389 520.797 790.948 541.046 822.074 565.637C856.428 593.186 878.533 632.373 883.848 675.147H621.841C630.012 655.029 630.059 632.688 621.972 612.539C613.886 592.389 598.254 575.896 578.165 566.32L589.671 613.886C560.839 581.588 541.806 542.248 534.667 500.196C527.1 517.558 523.826 536.372 525.109 555.143C507.598 516.742 500.882 474.573 505.639 432.877L482.717 456.81C484.886 439.746 486.7 424.601 488.647 409.456C490.756 385.593 499.547 362.731 514.082 343.308C528.617 323.886 548.35 308.634 571.174 299.179C594.901 289.765 620.394 285.189 646.046 285.741Z" fill="#EBF2BD" fillOpacity="0.15"/>
+          <path
+            fill="currentColor"
+            d="M13.995 4.077v.06A11 11 0 0 1 16.22 8.42c.605 2.167.876 4.414.805 6.662a1 1 0 0 1 0 .113a6.3 6.3 0 0 0-.721-1.846a4.4 4.4 0 0 0-1.367-1.45c.025.064.059.113.059.168a7 7 0 0 1 .528 2.245a4.7 4.7 0 0 1-1.076 3.41a1.4 1.4 0 0 0-.113.203l-.069-.065a3.95 3.95 0 0 0-.138-2.374c-.578 2.216-2.068 3.538-4.047 4.437c2.404-.01 4.723-.375 6.697-1.856c.015.533-.148.958-.696 1.841c1.673-.839 2.403-2.23 2.586-4.012c.45.536.755 1.178.888 1.866c.128.656.192 1.327.286 1.974c.71-1.747.686-3.593.444-5.512c2.137 1.248 3.02 3.266 3.701 5.428a25 25 0 0 0-.133-3.494c-.17-1.698-.59-3.36-1.248-4.935a11.84 11.84 0 0 0-6.638-6.583a8.8 8.8 0 0 0-1.973-.563m-2.734.11c-.306.522-.587 1.06-.933 1.539a18 18 0 0 1-1.14 1.524a1.3 1.3 0 0 1-.943.43l.445-2.083a.6.6 0 0 0-.143.188c-.3.46-.592.928-.908 1.372a.63.63 0 0 1-.726.247c-.493-.144-.987-.282-1.48-.44a.26.26 0 0 0-.326.08A18 18 0 0 1 3.785 8.42c-1.076.953-2.24 1.746-3.785 1.638v.065c.434 1.026.864 2.053 1.318 3.074a1.65 1.65 0 0 0 .69.74a12 12 0 0 1-.183-1.283c-.024-.523.094-.617.617-.667a.17.17 0 0 1 .203.129c.074.187.163.37.246.558c.104-.227.193-.44.296-.642a.3.3 0 0 1 .149-.133c.222-.094.45-.168.686-.257l.177.356c.153-.35.296-.696.46-1.037a.375.375 0 0 1 .468-.173v.242a4.93 4.93 0 0 0 .493 2.626a4.2 4.2 0 0 1 .281 1.046c.04.162-.043.257-.196.257l-.4.044a1.7 1.7 0 0 1 .27.247c.075.094.179.27.144.32a.9.9 0 0 1-.39.267a.54.54 0 0 1-.315 0a10 10 0 0 1-.81-.272a4 4 0 0 1-.414-.212l-.08.094l.716.612a1.55 1.55 0 0 0 1.24.41a.987.987 0 0 0 .986-.988c.045-.306.005-.616.045-.922a2.7 2.7 0 0 1 .927-1.974a2.56 2.56 0 0 0-1.214.74a6.4 6.4 0 0 1-.079-1.135a1.545 1.545 0 0 1 1.402-1.653a21 21 0 0 1 1.648-.281c.805-.08 1.599-.246 2.369-.494a4.4 4.4 0 0 0 1.406-.794a18 18 0 0 1-2.872.38a8.88 8.88 0 0 0 3.4-4.777c-1.056 1.48-2.202 2.867-3.87 3.701a22.7 22.7 0 0 0 1.447-4.086zM5.443 8.07c-.03.153-.054.305-.094.454c-.074.29-.163.577-.237.868a.197.197 0 0 1-.198.178c-.384.045-.764.103-1.183.157zM9.4 10.775a4 4 0 0 0-.577.053a2.9 2.9 0 0 0-1.48.523a.99.99 0 0 0-.43.923a1.1 1.1 0 0 1 .972-.671a3.07 3.07 0 0 1 1.762.34c.49.234.772.76.696 1.298a2.34 2.34 0 0 1-.687 1.377a5.8 5.8 0 0 1-1.914 1.308a9.7 9.7 0 0 0-2.32 1.41a3.95 3.95 0 0 0-1.396 2.567h5.921a2.023 2.023 0 0 1 .987-2.551l-.26 1.115a5.43 5.43 0 0 0 1.243-2.665c.171.407.245.848.216 1.288a5.6 5.6 0 0 0 .44-2.866l.518.561c-.049-.4-.09-.755-.134-1.11a3.1 3.1 0 0 0-1.865-2.585a4.2 4.2 0 0 0-1.692-.315"/>
         </svg>
       </div>
 
@@ -24,14 +27,14 @@ export default function AssinaturasPage() {
         {/* Back button */}
         <button 
           onClick={() => router.back()}
-          className="mb-4 hover:opacity-80 transition-opacity"
+          className="mb-6 md:mb-8 hover:opacity-80 transition-opacity"
           aria-label="Voltar"
         >
           <svg 
             width="65" 
             height="65" 
             viewBox="0 0 65 65" 
-            className="transform -rotate-90"
+            className="transform -rotate-90 w-12 h-12 md:w-16 md:h-16"
           >
             <image 
               href="https://api.builder.io/api/v1/image/assets/TEMP/fb4b177f8e64a0646b34e45ae74032a3591a7869?width=130" 
@@ -42,27 +45,33 @@ export default function AssinaturasPage() {
         </button>
 
         {/* Title */}
-        <div className="mb-8 sm:mb-12">
-          <div className="max-w-fit mx-auto rounded-lg bg-[#D5A82D] px-8 sm:px-12 py-3 sm:py-4 shadow-lg">
-            <h1 className="font-grenze text-3xl sm:text-4xl md:text-5xl text-[#5B300B] text-center">
+        <div className="mb-12 md:mb-16">
+          <div className="max-w-fit mx-auto rounded-lg bg-primary dark:bg-[#D5A82D] 
+            px-12 md:px-16 py-3 md:py-4 
+            shadow-[0_-32px_113px_0_rgba(0,0,0,0),0_-20px_72px_0_rgba(0,0,0,0.03),0_-11px_41px_0_rgba(0,0,0,0.1),0_-5px_18px_0_rgba(0,0,0,0.17),0_-1px_5px_0_rgba(0,0,0,0.2)]">
+
+            <h1 className="font-grenze text-4xl md:text-5xl lg:text-6xl 
+              text-white dark:text-[#5B300B] 
+              text-center font-normal">
               Assinaturas
             </h1>
           </div>
+
         </div>
 
         {/* Subscription Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 mb-12">
           {/* AVENTUREIRO - Free */}
           <div className="flex flex-col">
-            <h2 className="font-grenze text-3xl sm:text-4xl md:text-5xl text-[#FFC592] text-center mb-4">
+            <h2 className="font-grenze text-4xl md:text-5xl text-primary dark:text-[#FFC592] text-center mb-4 md:mb-6 font-normal">
               AVENTUREIRO
             </h2>
             
-            <div className="flex-1 rounded-lg border-2 border-[#EBF2BD] bg-[#CF7F2F] p-6 mb-4">
-              <div className="font-grenze text-xl sm:text-2xl space-y-3">
-                <p className="font-bold text-[#5B300B]">GRÁTIS</p>
-                <p className="text-[#FFC592]">R$ 0,00 / mês</p>
-                <p className="text-[#5B300B] leading-relaxed">
+            <div className="flex-1 rounded-lg border-2 border-accent dark:border-[#EBF2BD] bg-primary-dark dark:bg-[#CF7F2F] p-6 md:p-8 mb-4 md:mb-6 shadow-[0_-32px_113px_0_rgba(0,0,0,0),0_-20px_72px_0_rgba(0,0,0,0.03),0_-11px_41px_0_rgba(0,0,0,0.1),0_-5px_18px_0_rgba(0,0,0,0.17),0_-1px_5px_0_rgba(0,0,0,0.2)]">
+              <div className="font-grenze text-xl md:text-2xl space-y-3 md:space-y-4">
+                <p className="font-bold text-primary dark:text-[#5B300B]">GRÁTIS</p>
+                <p className="text-primary dark:text-[#FFC592]">R$ 0,00 / mês</p>
+                <p className="text-primary dark:text-[#5B300B] leading-relaxed">
                   Ideal para novos heróis!<br/>
                   Monte campanhas básicas,<br/>
                   crie personagens e jogue online com seus amigos.<br/>
@@ -74,22 +83,29 @@ export default function AssinaturasPage() {
               </div>
             </div>
 
-            <button className="rounded-lg bg-[#D5A82D] px-6 py-4 font-grenze text-2xl sm:text-3xl text-[#5B300B] hover:brightness-110 transition-all shadow-lg">
+            <button
+              className="rounded-lg bg-primary dark:bg-[#D5A82D] 
+              px-6 md:px-8 py-4 md:py-5 font-grenze text-2xl md:text-3xl 
+              text-white dark:text-[#5B300B] 
+              hover:brightness-110 transition-all 
+              shadow-[0_-32px_113px_0_rgba(0,0,0,0),0_-20px_72px_0_rgba(0,0,0,0.03),0_-11px_41px_0_rgba(0,0,0,0.1),0_-5px_18px_0_rgba(0,0,0,0.17),0_-1px_5px_0_rgba(0,0,0,0.2)] 
+              font-normal">
               JOGUE AGORA GRÁTIS!
             </button>
+
           </div>
 
           {/* MESTRE - Intermediate */}
           <div className="flex flex-col">
-            <h2 className="font-grenze text-3xl sm:text-4xl md:text-5xl text-[#FFC592] text-center mb-4">
+            <h2 className="font-grenze text-4xl md:text-5xl text-primary dark:text-[#FFC592] text-center mb-4 md:mb-6 font-normal">
               MESTRE
             </h2>
             
-            <div className="flex-1 rounded-lg border-2 border-[#EBF2BD] bg-[#CF7F2F] p-6 mb-4">
-              <div className="font-grenze text-xl sm:text-2xl space-y-3">
-                <p className="font-bold text-[#5B300B]">ILIMITADO INTERMEDIÁRIO</p>
-                <p className="text-[#FFC592]">12x R$ 24,90</p>
-                <p className="text-[#5B300B] leading-relaxed">
+            <div className="flex-1 rounded-lg border-2 border-accent dark:border-[#EBF2BD] bg-primary-dark dark:bg-[#CF7F2F] p-6 md:p-8 mb-4 md:mb-6 shadow-[0_-32px_113px_0_rgba(0,0,0,0),0_-20px_72px_0_rgba(0,0,0,0.03),0_-11px_41px_0_rgba(0,0,0,0.1),0_-5px_18px_0_rgba(0,0,0,0.17),0_-1px_5px_0_rgba(0,0,0,0.2)]">
+              <div className="font-grenze text-xl md:text-2xl space-y-3 md:space-y-4">
+                <p className="font-bold text-primary dark:text-[#5B300B]">ILIMITADO INTERMEDIÁRIO</p>
+                <p className="text-primary dark:text-[#FFC592]">12x R$ 24,90</p>
+                <p className="text-primary dark:text-[#5B300B] leading-relaxed">
                   Domine o campo de batalha com mais poder.<br/>
                   Inclui ferramentas aprimoradas para mestres e criadores de conteúdo.<br/>
                   Mapas personalizados e upload de imagens<br/>
@@ -101,22 +117,28 @@ export default function AssinaturasPage() {
               </div>
             </div>
 
-            <button className="rounded-lg bg-[#D5A82D] px-6 py-4 font-grenze text-2xl sm:text-3xl text-[#5B300B] hover:brightness-110 transition-all shadow-lg">
+            <button       
+              className="rounded-lg bg-primary dark:bg-[#D5A82D] 
+              px-6 md:px-8 py-4 md:py-5 font-grenze text-2xl md:text-3xl 
+              text-white dark:text-[#5B300B] 
+              hover:brightness-110 transition-all 
+              shadow-[0_-32px_113px_0_rgba(0,0,0,0),0_-20px_72px_0_rgba(0,0,0,0.03),0_-11px_41px_0_rgba(0,0,0,0.1),0_-5px_18px_0_rgba(0,0,0,0.17),0_-1px_5px_0_rgba(0,0,0,0.2)] 
+              font-normal">
               SEJA UM MESTRE!
             </button>
           </div>
 
           {/* Herói - Complete */}
           <div className="flex flex-col">
-            <h2 className="font-grenze text-3xl sm:text-4xl md:text-5xl text-[#FFC592] text-center mb-4">
+            <h2 className="font-grenze text-4xl md:text-5xl text-primary dark:text-[#FFC592] text-center mb-4 md:mb-6 font-normal">
               Herói
             </h2>
             
-            <div className="flex-1 rounded-lg border-2 border-[#EBF2BD] bg-[#CF7F2F] p-6 mb-4">
-              <div className="font-grenze text-xl sm:text-2xl space-y-3">
-                <p className="font-bold text-[#5B300B]">ILIMITADO COMPLETO</p>
-                <p className="text-[#FFC592]">12x R$ 49,90</p>
-                <p className="text-[#5B300B] leading-relaxed">
+            <div className="flex-1 rounded-lg border-2 border-accent dark:border-[#EBF2BD] bg-primary-dark dark:bg-[#CF7F2F] p-6 md:p-8 mb-4 md:mb-6 shadow-[0_-32px_113px_0_rgba(0,0,0,0),0_-20px_72px_0_rgba(0,0,0,0.03),0_-11px_41px_0_rgba(0,0,0,0.1),0_-5px_18px_0_rgba(0,0,0,0.17),0_-1px_5px_0_rgba(0,0,0,0.2)]">
+              <div className="font-grenze text-xl md:text-2xl space-y-3 md:space-y-4">
+                <p className="font-bold text-primary dark:text-[#5B300B]">ILIMITADO COMPLETO</p>
+                <p className="text-primary dark:text-[#FFC592]">12x R$ 49,90</p>
+                <p className="text-primary dark:text-[#5B300B] leading-relaxed">
                   A verdadeira força dos deuses do RPG.<br/>
                   Tenha todos os recursos desbloqueados e suporte prioritário.<br/>
                   IA para NPCs e geração de aventuras<br/>
@@ -128,7 +150,13 @@ export default function AssinaturasPage() {
               </div>
             </div>
 
-            <button className="rounded-lg bg-[#D5A82D] px-6 py-4 font-grenze text-2xl sm:text-3xl text-[#5B300B] hover:brightness-110 transition-all shadow-lg">
+            <button
+              className="rounded-lg bg-primary dark:bg-[#D5A82D] 
+              px-6 md:px-8 py-4 md:py-5 font-grenze text-2xl md:text-3xl 
+              text-white dark:text-[#5B300B] 
+              hover:brightness-110 transition-all 
+              shadow-[0_-32px_113px_0_rgba(0,0,0,0),0_-20px_72px_0_rgba(0,0,0,0.03),0_-11px_41px_0_rgba(0,0,0,0.1),0_-5px_18px_0_rgba(0,0,0,0.17),0_-1px_5px_0_rgba(0,0,0,0.2)] 
+              font-normal">
               TORNE-SE HERÓI!
             </button>
           </div>

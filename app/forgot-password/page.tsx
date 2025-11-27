@@ -232,7 +232,7 @@ export default function ForgotPasswordPage() {
             src="https://api.builder.io/api/v1/image/assets/TEMP/94531215b683ea45ba81381247c7039f9f0b4a4a?width=1472"
             alt="Fantasy Castle"
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ transform: 'scale(1.2) translate(-10%, -8%)' }}
+            style={{ transform: 'scale(1.5) translate(-10%, -8%)' }}
           />
         </div>
       </div>

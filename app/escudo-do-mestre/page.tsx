@@ -54,16 +54,19 @@ export default function EscudoDoMestrePage() {
           className="object-cover"
           priority
         />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/40 dark:bg-black/60 z-10 pointer-events-none" />
       </div>
 
+
       {/* Header Bar */}
-      <div className="relative z-10 w-full h-auto bg-[rgba(207,127,47,0.30)] py-6 sm:py-8 md:py-10">
+      <div className="relative z-10 w-full h-auto bg-[rgba(0, 0, 0, 0.2)] py-6 sm:py-8 md:py-10">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center">
             <h1
               className="font-grenze text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-[#FFC592] font-normal"
               style={{
-                textShadow: '0 0 10px rgba(221, 174, 44, 0.02), 0 0 9px rgba(221, 174, 44, 0.15), 0 0 8px rgba(221, 174, 44, 0.50), 0 0 6px rgba(221, 174, 44, 0.85), 0 0 3px rgba(221, 174, 44, 0.98)'
+                textShadow: '0 0 10px rgba(0, 0, 0, 0.02), 0 0 9px rgba(221, 174, 44, 0.15), 0 0 8px rgba(221, 174, 44, 0.50), 0 0 6px rgba(221, 174, 44, 0.85), 0 0 3px rgba(221, 174, 44, 0.98)'
               }}
             >
               {tabTitles[activeTab]}
@@ -121,7 +124,7 @@ export default function EscudoDoMestrePage() {
       <div className="fixed left-3 sm:left-4 md:left-6 bottom-20 sm:bottom-24 z-20 flex flex-col gap-2 sm:gap-3 items-center">
         <button
           onClick={() => setIsEnvironmentOpen(true)}
-          className="w-14 h-14 sm:w-16 sm:h-16 md:w-19 md:h-19 rounded-full bg-[#D5A82D] flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow-xl"
+          className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-[#D5A82D] flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow-xl"
           aria-label="Controle de ambiente"
           title="Controle de ambiente"
         >
@@ -141,7 +144,7 @@ export default function EscudoDoMestrePage() {
 
         <button
           onClick={() => setIsDiceRollerOpen(true)}
-          className="w-14 h-14 sm:w-16 sm:h-16 md:w-19 md:h-19 rounded-full bg-[#D5A82D] flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow-xl"
+          className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-[#D5A82D] flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow-xl"
           aria-label="Rolar dados"
           title="Rolar dados"
         >
@@ -161,12 +164,18 @@ export default function EscudoDoMestrePage() {
 
         <button
           onClick={handleAddCard}
-          className="w-14 h-14 sm:w-16 sm:h-16 md:w-19 md:h-19 rounded-full bg-[#D5A82D] flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow-xl relative"
-          aria-label="Adicionar cartão"
-          title="Adicionar cartão"
+          className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12
+                    rounded-full bg-[#D5A82D] flex items-center justify-center 
+                    hover:scale-110 active:scale-95 transition-transform shadow-xl"
         >
-          <span className="text-[#5B300B] text-4xl sm:text-5xl md:text-6xl font-grenze leading-none">+</span>
+
+        <span className="relative top-[-3px] text-[#5B300B] text-3xl sm:text-4xl md:text-5xl font-grenze leading-[0]">
+          +
+        </span>
+
+
         </button>
+
       </div>
 
       {/* Back Button */}
@@ -181,13 +190,27 @@ export default function EscudoDoMestrePage() {
           width="24"
           height="24"
           viewBox="0 0 24 24"
-          className="w-6 h-6 sm:w-7 sm:h-7 text-[#5B300B]"
+          className="w-7 h-7 sm:w-8 sm:h-8 text-[#5B300B]"
         >
-          <path
-            fill="currentColor"
-            d="m4 8l-.354.354L3.293 8l.353-.354zm5 11.5a.5.5 0 0 1 0-1zm-.354-6.146l-5-5l.708-.708l5 5zm-5-5.708l5-5l.708.708l-5 5zM4 7.5h10.5v1H4zm10.5 12H9v-1h5.5zm6-6a6 6 0 0 1-6 6v-1a5 5 0 0 0 5-5zm-6-6a6 6 0 0 1 6 6h-1a5 5 0 0 0-5-5z"
-          />
+          <defs>
+            <filter id="bold-outline">
+              <feMorphology operator="dilate" radius="0.5" in="SourceGraphic" result="thicker" />
+              <feMerge>
+                <feMergeNode in="thicker" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <g filter="url(#bold-outline)">
+            <path
+              fill="currentColor"
+              d="m4 8l-.354.354L3.293 8l.353-.354zm5 11.5a.5.5 0 0 1 0-1zm-.354-6.146l-5-5l.708-.708l5 5zm-5-5.708l5-5l.708.708l-5 5zM4 7.5h10.5v1H4zm10.5 12H9v-1h5.5zm6-6a6 6 0 0 1-6 6v-1a5 5 0 0 0 5-5zm-6-6a6 6 0 0 1 6 6h-1a5 5 0 0 0-5-5z"
+            />
+          </g>
         </svg>
+
+
       </button>
 
       {/* Cards Grid */}
